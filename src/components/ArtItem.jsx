@@ -1,23 +1,21 @@
-// src/components/ArtItem.jsx
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-const ArtItem = ({title, image}) => {
+export default function ArtItem({title, image, onPress}) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.item} onPress={onPress}>
       <Image source={{uri: image}} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  card: {
-    marginBottom: 16,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    elevation: 3,
+  item: {
+    marginBottom: 20,
+    borderRadius: 10,
     overflow: 'hidden',
+    backgroundColor: '#f0f0f0',
   },
   image: {
     width: '100%',
@@ -25,9 +23,7 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 10,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
   },
 });
-
-export default ArtItem;
