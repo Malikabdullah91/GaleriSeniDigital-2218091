@@ -1,29 +1,35 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-export default function ArtItem({title, image, onPress}) {
+export default function ArtItem({title, image, onPress, style}) {
   return (
-    <TouchableOpacity style={styles.item} onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
       <Image source={{uri: image}} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  item: {
-    marginBottom: 20,
-    borderRadius: 10,
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#f0f0f0',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    shadowOffset: {width: 0, height: 3},
   },
   image: {
     width: '100%',
-    height: 180,
+    height: 140,
   },
-  title: {
+  text: {
     padding: 10,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
+    textAlign: 'center',
+    color: '#333',
   },
 });
