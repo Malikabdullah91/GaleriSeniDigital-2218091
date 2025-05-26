@@ -1,26 +1,37 @@
 import React, {useState} from 'react';
-import {View, TextInput, Button, StyleSheet} from 'react-native';
+import {View, TextInput, Button, StyleSheet, Alert} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import {createArtwork} from '../services/api'; // import fungsi POST API
 
 export default function FormScreen({navigation}) {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
 
-  const handleSubmit = () => {
-    // Menyimpan karya dan kembali ke Home (simulasi sementara)
-    navigation.navigate('Home', {
-      newItem: {
-        id: Date.now().toString(),
+  const handleSubmit = async () => {
+    if (!title || !image) {
+      Alert.alert('Error', 'Judul dan URL gambar harus diisi!');
+      return;
+    }
+
+    try {
+      await createArtwork({
         title,
         image,
-      },
-    });
+        artist: 'Anonim', // atau bisa pakai input jika ingin ditambahkan
+        description: '',
+        category: '',
+      });
+
+      Alert.alert('Sukses', 'Karya berhasil ditambahkan!');
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error('Gagal menambah karya:', error);
+      Alert.alert('Error', 'Gagal menyimpan karya.');
+    }
   };
 
   return (
-    // Efek animasi fadeIn saat screen muncul
     <Animatable.View animation="fadeIn" duration={600} style={styles.container}>
-      {/* Efek animasi bouncing header */}
       <Animatable.Text
         animation="bounceInDown"
         delay={100}
@@ -28,7 +39,6 @@ export default function FormScreen({navigation}) {
         Tambah Karya Baru
       </Animatable.Text>
 
-      {/* Efek animasi saat input muncul */}
       <Animatable.View animation="fadeInUp" delay={200}>
         <TextInput
           placeholder="Judul Karya"
