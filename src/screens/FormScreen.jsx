@@ -2,6 +2,19 @@ import React, {useState} from 'react';
 import {View, TextInput, Button, StyleSheet, Alert} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {createArtwork} from '../services/api'; // import fungsi POST API
+import NotificationHelper from '../utils/NotificationHelper';
+
+const handleSubmit = async () => {
+  // Simpan karya ke Firebase atau lokal
+  // ...
+
+  NotificationHelper.showNotification(
+    'Karya Baru Ditambahkan',
+    `Karya "${title}" berhasil disimpan!`,
+  );
+
+  navigation.navigate('Home');
+};
 
 export default function FormScreen({navigation}) {
   const [title, setTitle] = useState('');
