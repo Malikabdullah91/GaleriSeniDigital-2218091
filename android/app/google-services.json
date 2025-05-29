@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "685740486873",
+    "project_id": "wocoapp-b76c1",
+    "storage_bucket": "wocoapp-b76c1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685740486873:android:99f0329a73936bb7d3cec8",
+        "android_client_info": {
+          "package_name": "com.woco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PHlBEH-jLfI1ibN00SunPw6AreySslI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
